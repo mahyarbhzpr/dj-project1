@@ -1,0 +1,105 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'fa' %}رخام | بلاگ ها{% else %}rokhaam | Blogs{% endif %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' with logo=logo %}
+    <!-- Main -->
+    <!-- Main -->
+    <main id="main" class="shock-main ">
+
+      <!-- Banner -->
+      <section class="shock-section has-overlay">
+        <div class="banner">
+          <div class="content-wrapper">
+            <!-- Intro -->
+            <div class="extended-intro max-w-65">
+              <h1 class="title text-style-1 text-offset">
+                <span class="text-1 filled tertiary-50" data-lax="inertia-top">{{ content.content1 }}</span>
+                <span class="text-1 outline white">{{ content.content1 }}</span>
+              </h1>
+              <span class="text-2 text-style-4 fw-400 text-outline text-italic white"><mark class="animated-underline tertiary-50">{{ content.content2 }}</mark> </span>
+            </div>
+          </div>
+          <!-- Image -->
+          <div class="image-wrapper">
+            <img src="{{ banner.img.url }}" class="image vh-50 fit-cover" />
+          </div>
+          <!-- Overlay -->
+          <div class="overlay black-75"></div>
+        </div>
+      </section>
+
+      <!-- Blog -->
+      <section class="shock-section pt-5 pb-5 bg-color black">
+        <div class="container">
+          <div id="load-more" class="row g-5" data-display="8" data-columns="2">
+          {% for blogs in blogs %}
+            <div class="col-12 col-md-6 load-more-item">
+              <div class="card has-image is-horizontal shadow parent">
+                <!-- Icon -->
+                <div class="sticky-post-icon tertiary">
+                  <i class="fas fa-thumbtack icon white"></i>
+                </div>
+                <!-- Label -->
+                <span class="label-vertical to-bottom-right-out">
+                  <span class="label-line gray"></span>
+                  <span class="label-text gray"><i class="icon fas fa-user-circle"></i> {{blogs.author.full_name}}</span>
+                </span>
+                <!-- Image -->
+                <div class="image-wrapper hover-scale">
+                  <img src="{{blogs.image.url}}" alt="{{blogs.name}}" class="image" />
+                </div>
+                <!-- Body -->
+                <div class="card-body" data-bg-color="#201f25">
+                  <h3 class="title text-style-11 white"> {{blogs.title}}</h3>
+                  <p class="description line-clamp-3">{{blogs.short_description}}</p>
+                  <!-- Button -->
+                  <div class="button-wrapper align-h-right">
+                    <span class="arrow-button cross scheme-2 tertiary">
+                      <span class="arrow">
+                        <span class="item"></span>
+                        <span class="item"></span>
+                      </span>
+                      <span class="line"></span>
+                      <span class="text">{% if LANGUAGE_CODE == 'fa' %}مشاهده{% else %}see{% endif %}</span>
+                    </span>
+                  </div>
+                </div>
+                <!-- Link -->
+                <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}blog/{{blogs.slug}}" class="full-link"></a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="mt-4 text-center">
+            <!-- Button -->
+            <button id="load-more-button" class="button outline rounded tertiary-25 tertiary-hover hover-up-down">
+              <span class="button-text white-75 white-hover">{% if LANGUAGE_CODE == 'fa' %}مشاهده بیشتر{% else %}see more{% endif %}</span>
+              <i class="fa-solid fa-arrow-rotate-right button-icon white white-hover"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+    </main>  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

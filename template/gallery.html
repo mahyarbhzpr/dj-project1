@@ -1,0 +1,56 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}رخام | گالری{% else %}rokhaam | Gallery{% endif %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main bg-color black">
+
+       <!-- Hover variation -->
+      <section class="shock-section pt-3 pb-3">
+        <div class="container">
+          <!-- Intro -->
+          <div class="basic-intro mb-2 text-center">
+            <h2 class="title gray-50 text-style-5">{% if LANGUAGE_CODE == 'fa' %}گالری{% else %}Gallery{% endif %}</h2>
+            <hr class="gray-25">
+          </div>
+          <!-- Gallery -->
+          <div class="gallery stretched has-gap">
+            <div class="bricklayer" data-columns="5">
+              {% for gallery in gallery %}
+              <a href="{{gallery.image.url}}" class="item gallery-item__img hover-up">
+                <div class="text-wrapper text-center">
+                  <p class="white">{{gallery.name}}</p>
+                </div>
+                <div class="image-wrapper shadow rounded">
+                  <div class="overlay black-50"></div>
+                  <img src="{{gallery.image.url}}" class="image" />
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

@@ -1,0 +1,199 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}rokhaam{% else %}رخام{% endif %}| {{ portfolio.name }} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+</head>
+<body>
+    {% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main">
+
+      <!-- Banner -->
+      <section class="shock-section has-holder">
+        <div class="container max-w-85">
+          <!-- Intro -->
+          <div class="basic-intro mb-35 text-center">
+            <h1 class="title black">
+              <span class="text-1 text-style-3">{% if LANGUAGE_CODE == 'en' %}Project{% else %}پروژه{% endif %}</span>
+              <span class="text-2 text-style-4 text-italic"> <mark class="animated-underline primary-50"> {{ portfolio.name }}</mark>.</span>
+            </h1>
+            <hr class="gray-25">
+          </div>
+        </div>
+      </section>
+
+      <!-- Thumbnail carousel -->
+      <section class="shock-section pb-5">
+        <div class="container max-w-85">
+          <!-- Carousel -->
+          <div class="thumbnail-slider">
+            <div class="swiper slider has-navigation thumbnail-slider-items scheme-1 primary">
+              <div class="swiper-wrapper">
+                  {% if portfolio.image %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{portfolio.image.url}}" class="image vh-65 fit-cover small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image2 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image2.url }}" class="image vh-65 fit-cover small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image3 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image3.url }}" class="image vh-65 fit-cover small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image4 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image4.url }}" class="image vh-65 fit-cover small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image5 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image5.url }}" class="image vh-65 fit-cover small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+            <div class="swiper slider thumbnails thumbnail-slider-control">
+              <div class="swiper-wrapper">
+                  {% if portfolio.image %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image.url }}" class="image small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image2 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image2.url }}" class="image small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image3 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image3.url }}" class="image small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image4 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image4.url }}" class="image small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+                {% if portfolio.image5 %}
+                <div class="swiper-slide">
+                  <div class="image-wrapper">
+                    <img src="{{ portfolio.image5.url }}" class="image small-shadow rounded" />
+                  </div>
+                </div>
+                {% else %}
+                <!-- no pic -->
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content -->
+      <section class="shock-section pb-5">
+        <div class="container max-w-85">
+          <div class="content scheme-1">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-nav scheme-1 primary">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item has-icon">
+                    <a href="#" class="breadcrumb-link">{{ portfolio.date_created }}</a>
+                  </li>
+                  <li class="breadcrumb-item has-icon">
+                    <a href="#" class="breadcrumb-link"><span class="text">/{{ portfolio.name }}</span></a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">/
+                    {{ portfolio.auth }}
+                  </li>
+                </ol>
+              </nav>
+            </div>
+            <!-- Image -->
+            <div class="stretched-section">
+              <figure class="figure">
+                <img src="{{ portfolio.image.url }}" class="image shadow rounded" alt="{{portfolio.name}}">
+                <figcaption class="figure-caption text-center"> {{portfolio.name}}.</figcaption>
+              </figure>
+            </div>
+            <!-- Paragraph -->
+            <p>{{portfolio.description|safe}}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Author -->
+      <section class="shock-section pb-5">
+        <div class="container max-w-85">
+          <div class="content max-w-100 scheme-1">
+            <!-- Post reference -->
+            <div class="post-reference" data-lax="inertia-top">
+              <div class="post-reference-container">
+                <div class="image-wrapper">
+                  <img src="{{ portfolio.auth.image.url }}" alt="{{portfolio.auth}}" class="image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>

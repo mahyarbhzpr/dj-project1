@@ -1,0 +1,96 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> {% if LANGUAGE_CODE == 'en' %}rokhaam | Checkout {% else %}رخام | جزئیات سفارش{% endif %}</title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body bg-color black" >
+{% include 'header.html' %}
+    <script>
+    function numberWithCommas(number) {
+    var parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+    }
+
+ //Output: 1,234,567
+    </script>
+    <main id="main" class="shock-main">
+      <section class="shock-section has-holder pt-6 pb-3 bg-color black"><div class="navbar-holder"></div>
+                <div class="container max-w-55">
+                    <div class="card-body">
+                  <h2 class="text-offset text-style-1">
+                    <span class="filled tertiary-50"> {% if LANGUAGE_CODE == 'en' %}Checkout{% else %}جزئیات سفارش{% endif %} </span>
+                    <span class="outline white"> {% if LANGUAGE_CODE == 'en' %}Checkout{% else %}جزئیات سفارش{% endif %}</span>
+                  </h2>
+                  <!-- Tag Cloud -->
+                </div>
+
+          <!-- Table -->
+          <table class="table scheme-2">
+            <thead>
+              <tr>
+                <th scope="col" class="white">#</th>
+                <th scope="col" class="white"> {% if LANGUAGE_CODE == 'en' %}image{% else %}عکس{% endif %}</th>
+                <th scope="col" class="white"> {% if LANGUAGE_CODE == 'en' %}name{% else %}نام{% endif %}</th>
+                <th scope="col" class="white"> {% if LANGUAGE_CODE == 'en' %}Price{% else %}قیمت{% endif %}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for cart in cart %}
+            {% with product=cart.product %}
+              <tr>
+                <th scope="row" class="white">{{product.id}}</th>
+                <td><img src="{{product.image.url}}" width="70px" height="70px" style="border-radius:50%;"/></td>
+                <td> {{product.name}}</td>
+                <td id="price{{product.id}}"></td>
+              </tr>
+              <script>document.querySelector("#price{{product.id}}").innerHTML +=  numberWithCommas({{product.price}}) + "تومانءءء";
+              </script>
+            {% endwith %}
+            {% endfor %}
+            </tbody>
+          </table>
+                   <div class="container">
+            <div class="row g-4">
+        <div class="col-6 col-md-6">
+                <!-- Bottom Tooltip -->
+            <h2 class="text-style-5 text-outline text-color black floating-item" style="color:white;">
+            <mark class="animated-underline when-hover accent active" id="pricet"> </mark>
+            </h2>
+            <script>document.querySelector("#pricet").innerHTML +=  numberWithCommas({{ cart.get_total_price }}) + "تومانءءء";
+              </script>
+        </div>
+        <div class="col-6 col-md-6">
+                    <form action="." method="post" style="float:left;">
+            {% csrf_token %}
+            <button class="button shadow tertiary-25 tertiary-hover magnetic-effect" type="submit">
+            <span class="button-text tertiary white-hover" style="color:white; background:green;"> {% if LANGUAGE_CODE == 'en' %}pay{% else %}پرداخت{% endif %}</span>
+            <span class="button-duocolor tertiary black-hover" style="background:green;">
+            <i class="fa-solid fa-arrow-down button-icon white white-hover"></i>
+            </span>
+            </button>
+            </form>
+        </div>
+                </div>
+                </div>
+        </div>
+
+      </section>
+
+</main>
+      <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+</html>

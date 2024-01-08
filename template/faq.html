@@ -1,0 +1,68 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}rokhaam | Faq {% else %}رخام | سوالات متداول{% endif %}</title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main bg-color black">
+
+      <!-- Faq -->
+      <section class="shock-section has-holder pt-5 pb-5">
+        <div class="container max-w-85">
+          <!-- Intro -->
+          <div class="basic-intro mb-35 text-center">
+            <h2 class="title">
+              <span class="text-1 d-block text-style-1 text-outline gray-75">{% if LANGUAGE_CODE == 'en' %}Faqs {% else %}سوالات متداول{% endif %}</span>
+              <span class="text-2 d-block text-style-5 text-italic white"><mark class="animated-underline primary">{% if LANGUAGE_CODE == 'en' %}Question{% else %}سوالات{% endif %}</mark>
+              {% if LANGUAGE_CODE == 'en' %} Common{% else %}متداول{% endif %}.
+              </span>
+            </h2>
+            <hr class="gray-25">
+          </div>
+          <!-- Collapse -->
+          <div class="collapsible max-w-50 mx-auto">
+            {% for faq in faq %}
+            <div class="collapse-group">
+              <a href="#collapse-1-a" class="collapse-toggle parent" aria-expanded="true" aria-controls="collapse-1-a" data-bs-toggle="collapse">
+                <div class="collapse-button outline primary-25">
+                  <span class="arrow-button cross scheme-2 primary">
+                    <span class="arrow">
+                      <span class="item"></span>
+                      <span class="item"></span>
+                    </span>
+                    <span class="line"></span>
+                  </span>
+                </div>
+                <h3 class="title text-style-11 white">{{faq.question}}</h3>
+              </a>
+              <div id="collapse-1-a" class="collapse-content collapse show">
+                <p> {{ faq.answer }}.</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+    </main>
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

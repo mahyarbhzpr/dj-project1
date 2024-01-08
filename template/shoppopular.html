@@ -1,0 +1,160 @@
+{% load static %}
+{% load ratings %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}rokhaam | Products{% else %}رخام | محصولات{% endif %}</title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <script>
+    function numberWithCommas(number) {
+    var parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+    }
+
+ //Output: 1,234,567
+    </script>
+    <!-- Main -->
+    {% if messages %}
+<div class="alert alert-success" role="alert" id="message" style="position: fixed; top:10%; z-index:99999; width:25%; right:5px;">
+    {% for message in messages %}
+    <center>
+    <span{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
+    </center>
+    {% endfor %}
+    <script type="text/javascript">
+        setTimeout(() => {
+            let get = document.getElementById('message');
+            get.style.display = 'none';
+            }, 4000);
+</script>
+</div>
+{% endif %}
+    <main id="main" class="shock-main bg-color gray-10">
+    <!-- Horizontal Tab: Dark background -->
+      <section class="shock-section pt-6 pb-6 bg-color black">
+        <div class="container">
+          <div class="horizontal-tab scheme-2 secondary">
+            <!-- Tab navigation -->
+            <ul id="example-dark-tab" class="nav nav-tabs" role="tablist" aria-orientation="horizontal">
+              <li class="nav-item" role="presentation">
+                   <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}store" class="nav-link">
+                <button id="example-dark-2-tab" class="nav-link">
+                   {% if LANGUAGE_CODE == 'en' %}News{% else %}جدید ترین ها{% endif %}
+                </button>
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}store/mostbought" class="nav-link">
+                <button id="example-dark-2-tab" class="nav-link">
+                  {% if LANGUAGE_CODE == 'en' %}Most sell{% else %}بیشترین فروش{% endif %}
+                </button>
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                 <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}store/popular" class="nav-link">
+                <button id="example-dark-3-tab" class="nav-link active">
+                  {% if LANGUAGE_CODE == 'en' %}Popular{% else %}پرطرفدار ترین{% endif %}
+                </button>
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                 <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}store/mostview" class="nav-link">
+                <button id="example-dark-4-tab" class="nav-link">
+                  {% if LANGUAGE_CODE == 'en' %}Most see{% else %}بیشترین بازدید{% endif %}
+                </button>
+                </a>
+              </li>
+            </ul>            <div class="tab-content">
+              <div id="products-1" class="tab-pane fade show active" role="tabpanel">
+                <div class="gallery">
+                  <div id="load-more" class="row g-4" data-display="6" data-columns="2">
+                    {% for products in products %}
+                    {% if products.active %}
+                    <div class="col-12 col-md-6 load-more-item">
+                      <div class="card has-image has-shop-price is-horizontal shadow parent">
+                        <!-- Icon -->
+                        <div class="wishlist-icon primary-25 primary-hover hover-up-down">
+                          <i class="fa-solid fa-heart icon primary white-hover"></i>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="image-wrapper hover-scale">
+                          <a href="{{products.get_absolute_url}}" class="lightbox-link">
+                              {% if products.image %}
+                            <img src="{{products.image.url}}" class="image" />
+                                {% endif %}
+                          </a> 
+                        </div>
+                        <!-- Body -->
+                        <div class="card-body bg-color white">
+                          <h3 class="title text-style-11 black">{{products.name}}.</h3>
+                          <div> {% ratings products %}</div>
+                        <div>{% if LANGUAGE_CODE == 'en' %}Count buy:{% else %}تعداد فروش{% endif %}{{products.countofbuy}}</div>
+                          <p class="description"></p>
+                          <div class="card-flex-wrapper">
+                            <span class="fw-600 text-color black"><mark class="animated-underline primary-50">
+                                {% if products.discount %}
+                                <del id="pricediscount{{products.id}}"> </del>
+                                <script>
+                            document.querySelector("#pricediscount{{products.id}}").innerHTML +=  numberWithCommas({{products.discount}}) + "تومانءءء";
+                            </script>
+                                {% else %}
+                                
+                                {% endif %}
+                                <span id="price{{products.id}}"> </span>تومانءءء</mark></span>
+
+                            <script>
+                            document.querySelector("#price{{products.id}}").innerHTML +=  numberWithCommas({{products.price}});
+                            
+                            </script>
+                            <!-- Button -->
+                            <form method="POST" action="{% url 'cart:cart_add' products.id %}">
+                              {% csrf_token %}
+                              <input type="hidden" name="product_count" value="1" min="0" max="1" />
+                              <button class="button-text black black-hover" type="submit" style="background:transparent; border:none;"><mark class="animated-underline when-hover primary-50">{% if LANGUAGE_CODE == 'en' %}Add to Cart{% else %}افزودن به سبد خرید{% endif %}</mark></button>
+                              <i class="fa-solid fa-arrow-left button-icon black black-hover"></i>
+                            </form>
+                            {% endif %}
+                          </div>
+                          <!-- Link -->
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <div id="products-2" class="tab-pane fade" role="tabpanel">
+                <div class="gallery">
+                  <div class="row g-4">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              </div>
+            </div>
+      </section>
+
+    </main>  <!-- ======= Footer ======= -->
+
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>

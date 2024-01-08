@@ -1,0 +1,244 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'fa' %}رخام{% else %}rokhaam{% endif %}|{{blog.title}} </title>
+    <meta name="description" content="{{blog.meta_description}} ">
+    <meta content="{% for kw in kw %} {{ kw.title }}, {% endfor %}" name="keywords">
+    <meta name="author" content="{{blog.author.full_name}}">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main">
+
+      <!-- Banner -->
+      <section class="shock-section has-overlay">
+        <div class="banner">
+          <div class="content-wrapper">
+            <!-- Intro -->
+            <div class="extended-intro max-w-65 mb-25">
+              <h1 class="title text-style-1 text-offset">
+                <span class="text-1 filled primary-50" data-lax="inertia-top"> {{blogs.title}} </span>
+                <span class="text-1 outline white"> {{blogs.title}} </span>
+              </h1>
+            </div>
+          </div>
+          <!-- Image -->
+          <div class="image-wrapper">
+            <img src="{{ blog.image.url }}" class="image vh-50 fit-cover" />
+          </div>
+          <!-- Overlay -->
+          <div class="overlay black-50"></div>
+        </div>
+      </section>
+
+      <!-- Post -->
+      <section class="shock-section bg-color black">
+        <div class="container max-w-85">
+          <div class="holder p-5 climb shadow rounded" data-bg-color="#201f25" data-lax="inertia-top">
+            <div class="content max-w-85 scheme-2">
+
+              <!-- Breadcrumb -->
+              <div class="breadcrumb-nav scheme-2 primary">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item has-icon">
+                      <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}" class="breadcrumb-link"><i class="fa-solid fa-house icon"></i><span class="text">{% if LANGUAGE_CODE == 'fa' %}
+                      خانه{% else %}Home{% endif %}</span></a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}/blog" class="breadcrumb-link">{% if LANGUAGE_CODE == 'fa' %}بلاگ ها{% else %}Blogs{% endif %}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      {{blog.title}}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+              <p class="description">{{blog.description|safe}}</p>
+
+              <!-- Blockquote -->
+              <div class="blockquote mx-auto">
+                <blockquote class="blockquote-body text-style-11 white">
+                  <p>{{blog.author_comment}}</p>
+                </blockquote>
+                <div class="blockquote-footer">
+                  <cite title="Source Title">{{blog.author.full_name}}</cite>
+                </div>
+                <i class="fas fa-quote-right overlay-icon gray-50"></i>
+              </div>
+              <!-- Divider -->
+              <div class="stretched-section">
+                <div class="block-section">
+                  <span class="zzz scheme-2 gray-75"></span>
+                </div>
+              </div>
+
+              <!-- cat Cloud -->
+              <div class="block-section">
+                <h2>{% if LANGUAGE_CODE == 'fa' %}دسته بندی ها{% else %}Categories{% endif %}</h2>
+                <div class="tag-cloud">
+                  {% for cats in cats %}
+                  <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}blog/{{ cats.slug }}" class="link">
+                    <span class="badge outline gray-50 primary-hover">
+                      <span class="badge-text gray white-hover">{{ cats.title }}</span>
+                    </span>
+                  </a>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Tag Cloud -->
+              <div class="block-section">
+                <h2>{% if LANGUAGE_CODE == 'fa' %}تگ ها{% else %}Tags{% endif %}</h2>
+                <div class="tag-cloud">
+                  {% for tags in tags %}
+                  <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}blog/tag/{{ tags.slug }}" class="link">
+                    <span class="badge outline gray-50 primary-hover">
+                      <span class="badge-text gray white-hover">{{ tags.title }}</span>
+                    </span>
+                  </a>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Post reference -->
+              <div class="stretched-section">
+                <div class="block-section">
+                  <div class="post-reference" data-lax="inertia-top">
+                    <div class="post-reference-container">
+                      <div class="image-wrapper">
+                        <img src="{{blog.author.image.url}}" alt="{{blog.author.full_name}}" class="image">
+                      </div>
+                      <div class="text-wrapper">
+                        <h5 class="title"><mark class="animated-underline primary-50">{{blog.author.full_name}}</mark></h5>
+                        <p class="description">{{blog.author.description}}</p>
+                        <cite title="Source Title">{{blog.author_comment}}.</cite>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Comments -->
+              <div class="comments">
+                <h2>{% if LANGUAGE_CODE == 'fa' %}نظرات{% else %}Comments{% endif %}</h2>
+                <div class="comments-wrapper">
+                  <!-- Comment -->
+                  {% for cm in comment %}
+                  {% if cm.active %}
+                  <div id="comment-{{cm.id}}" class="comment">
+                    <div class="comment-metadata">
+                      <div class="comment-author">
+                        <h5 class="author-name"> {{cm.name}}</h5>
+                      </div>
+                    </div>
+                    <div class="comment-content">
+                      <p>{{cm.description}}</p>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                <!-- Form -->
+                <div class="form-area scheme-2 primary">
+                  <form class="form-fields" method="POST" action="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}/blog/{{blog.slug}}/">
+                    {% csrf_token %}
+                    <div class="form-row row">
+                      <div class="form-col col-6 col-md-6">
+                          <input type="text" class="form-control" name="name" placeholder="{% if LANGUAGE_CODE == 'fa' %}نام کامل{% else %}Full name{% endif %}"  required="required" value="">
+                    </div>
+                    <div class="form-col col-6 col-md-6">
+                          <input type="text" class="form-control" name="phone" placeholder="{% if LANGUAGE_CODE == 'fa' %}شماره تلفن همراه{% else %}phone{% endif %}"  required="required" value="">
+                    </div>
+                    </div>
+                        
+                    <div class="form-row row">
+                      <div class="form-col col-12">
+                        <textarea class="form-control rounded-3 form-textarea" rows="3" placeholder="{% if LANGUAGE_CODE == 'fa' %}نظر{% else %}Message{% endif %}" required="required" name="description" value=""></textarea>
+                      </div>
+                    </div>
+                    <div class="form-row row">
+                      <div class="form-col col-12">
+                        <!-- Button -->
+                        <button class="button shadow rounded-3 primary white-hover button-collision" type="submit">
+                          <span class="button-text white black-hover">{% if LANGUAGE_CODE == 'fa' %}ارسال{% else %}send{% endif %}</span>
+                          <i class="fa-solid fa-arrow-left button-icon white black-hover"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related posts -->
+      <section class="shock-section pt-4 pb-4 bg-color black">
+        <div class="container">
+          <!-- Posts -->
+          <div class="swiper slider has-gap has-navigation has-pagination scheme-2 primary" data-columns="2,2,1,1">
+            <div class="swiper-wrapper">
+              <!-- cat = cat -->
+              {% for rec in rec %}
+              <div class="swiper-slide">
+                <div class="card has-full-image vh-50 small-shadow rounded parent">
+                  <!-- Image -->
+                  <div class="image-wrapper hover-up-down">
+                    <img src="{{ rec.image.url }}" alt="Image name" class="image" />
+                  </div>
+                  <!-- Icon -->
+                  <div class="sticky-post-icon primary">
+                    <i class="fas fa-thumbtack icon white"></i>
+                  </div>
+                  <div class="card-body align-v-bottom">
+                    <div class="holder">
+                      <h3 class="title text-style-9 white">{{ rec.title }}</h3>
+                      <hr class="gray-25">
+                      <!-- Tag Cloud -->
+                      <div class="tag-cloud">
+                          <span class="badge outline gray-50 primary-hover">
+                            <span class="badge-text gray white-hover"> {{ rec.author.full_name }}</span>
+                          </span>
+                          <span class="badge outline gray-50 primary-hover">
+                            <span class="badge-text gray white-hover"> {{ rec.date_created }}</span>
+                          </span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Overlay -->
+                  <div class="overlay black"></div>
+                  <!-- Link -->
+                  <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}/blog/{{rec.slug}}" class="full-link"></a>
+                </div>
+              </div>
+              {% endfor %}
+              <!-- End -->
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

@@ -1,0 +1,1 @@
+from rokhaam.wsgi import application

@@ -1,0 +1,180 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> {% if LANGUAGE_CODE == 'en' %}rokhaam | Contact us{% else %}رخام | ارتباط با ما  {% endif %}</title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body bg-color black" >
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main">
+      <!-- Form -->
+      <section class="shock-section has-holder pt-4 pb-4">
+        <div class="container max-w-85">
+          <div class="row g-5">
+            <div class="col-12 col-md-6 align-v-center">
+              <!-- Image -->
+              <div class="image-wrapper magnetic-effect">
+                <img src="{{ rightimg.img.url }}" class="image bg-color primary-25" />
+              </div>
+            </div>
+                <div class="col-12 col-md-5">
+              <div class="card has-image shadow rounded parent">
+                <!-- Image -->
+                <div class="image-wrapper rounded-top">
+                  <img src="{{contact.img.url}}" alt="{% if LANGUAGE_CODE == 'en' %}rokhaam{% else %}رخام{% endif %}" class="image vh-35 fit-cover bg-color primary-25">
+                </div>
+                <!-- Body -->
+                <div class="card-body rounded-bottom bg-color gray-10">
+                  <div class="title align-v-center text-style-11 white">
+                     <a href="tel:+989122842892" target="_blank">
+                    <i class="fa-solid fa-phone icon"></i>
+                    <span class="text ms-05">98-912-298-2892+</span>        
+                    </a>
+                    </div>
+                    <div class="title align-v-center text-style-11 white">
+                    <a href="tel:+982188527738" target="_blank">
+                    <i class="fa-solid fa-phone icon"></i>
+                    <span class="text ms-05">98-21-8852-7738+</span>        
+                    </a>
+                  </div>
+                        <p class="description" style="height:65px;"> {% if LANGUAGE_CODE == 'en' %}Iran, Tehran, motahari, koh noor street, third Street, Nu 19, Unit 4{% else %}  تهران خیابان مطهری خیابان کوه نور کوچه سوم پلاک ۱۹ واحد ۴ {% endif %}</p>
+                <div class="list-wrapper">
+                  <ul class="icon-h-list">
+                    <li class="item ms-0">
+                      <a href="#" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-instagram"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="https://msng.link/o/?mostafakermani_rkm=tg" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-telegram"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="https://wa.link/82oob5" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-whatsapp"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="tel:+989122842892" class="link gray tertiary-hover hover-rotate"><i class="fa fa-phone" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scrolling text -->
+      <section class="shock-section">
+        <div class="scrolling-text" style="height:50vh;">
+          <!-- Text -->
+          <div class="text-wrapper mix-blend-lighter">
+            <h2 class="text text-style-4 text-outline gray-75" data-lax="h-left" >{{ content1.content1 }}</h2>
+            <h2 class="text text-style-5 text-italic gray-75" data-lax="h-right">{{ content1.content1 }}</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card -->
+      <section class="shock-section pt-4 pb-5">
+        <div class="container max-w-85">
+          <div class="row g-4">
+            <div class="col-12 col-md-7 align-v-center">
+              <div class="holder">
+                <!-- Intro -->
+                <div class="basic-intro">
+                  <h2 class="title text-style-5 black">
+                    <span class="text-1 text-outline" style="color:white;">{{ content2.content1 }}</span>
+                    <span class="text-2 text-italic" style="color:white;">{{ content2.content2 }} <mark class="animated-underline primary-25">{{ content2.content3 }}</mark>.</span>
+                  </h2>
+                  <div class="description gray">
+                    <p>{{ content2.content4 }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+                            <!-- Form -->
+                <div class="form-area scheme-1 primary">
+                  <form action="." class="form-fields needs-validation ajax-form" method="post">
+                    {% csrf_token %}
+                    <div class="form-row row">
+                      <div class="form-col form-floating col-12 col-md-6">
+                        <input type="text" name="name" id="InputFloatingName" class="form-control" placeholder="{% if LANGUAGE_CODE == 'en' %}Full name{% else %}نام کامل{% endif %}" required="required">
+                        <label for="InputFloatingName" class="form-label"> {% if LANGUAGE_CODE == 'en' %}Full name{% else %}نام کامل{% endif %}</label>
+                      </div>
+                      <div class="form-col form-floating col-12 col-md-6">
+                        <input type="text" name="phone" id="InputFloatingCompany" class="form-control" placeholder="09121234567" required="required">
+                        <label for="InputFloatingCompany" class="form-label">{% if LANGUAGE_CODE == 'en' %}Phone{% else %}تلفن همراه{% endif %}</label>
+                      </div>
+                    </div>
+                    <div class="form-row row">
+                      <div class="form-col form-floating col-12 col-md-6">
+                        <input type="text" name="subject" id="InputFloatingEmail" class="form-control" placeholder="{% if LANGUAGE_CODE == 'en' %}Subject{% else %}موضوع{% endif %}" required="required">
+                        <label for="InputFloatingEmail" class="form-label">{% if LANGUAGE_CODE == 'en' %}Subject{% else %}موضوع{% endif %}</label>
+                      </div>
+                    </div>
+                    <div class="form-row row">
+                      <div class="form-col form-floating col-12">
+                        <textarea name="description" id="InputFloatingMessage" class="form-control primary form-textarea" rows="3" placeholder="{% if LANGUAGE_CODE == 'en' %}Message{% else %}پیام{% endif %}"></textarea>
+                        <label for="InputFloatingMessage" class="form-label">{% if LANGUAGE_CODE == 'en' %}Message{% else %}پیام{% endif %}</label>
+                      </div>
+                    </div>
+                      <div class="form-col col-12 col-md-12 align-h-right">
+                        <!-- Button -->
+                        <button class="button arrow-button next scheme-1 primary" type="submit" >
+                          <span class="arrow" style="background:white;">
+                            <span class="item" style="background:white;"></span>
+                            <span class="item" style="background:white;"></span>
+                          </span>
+                          <span class="line" style="background:white;"></span>
+                          <span class="text" style="color:white;">{% if LANGUAGE_CODE == 'en' %}Send{% else %}ارسال{% endif %}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map -->
+      <section class="shock-section">
+        <div id="map-canvas-2" class="vh-50"></div>
+      </section>
+
+    </main>
+
+    <!-- خطوط عمودی -->
+    <div class="vertical-lines scheme-1 primary">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-3 align-h-center">
+          <span class="line"></span>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 align-h-center">
+          <span class="line"></span>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 align-h-center">
+          <span class="line"></span>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 align-h-center">
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+
+<!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

@@ -1,0 +1,49 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}rokhaam | empty-Cart{% else %}رخام | سبد خرید خالی{% endif %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+<main id="main" class="shock-main">
+      <!-- Dark -->
+      <section class="shock-section pt-6 pb-6 bg-color black">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="card parent">
+                <div class="card-body">
+                  <h2 class="text-offset text-style-1">
+                    <span class="filled tertiary-50">{% if LANGUAGE_CODE == 'en' %}Shopping Cart{% else %}سبد خرید{% endif %}</span>
+                    <span class="outline white">{% if LANGUAGE_CODE == 'en' %}Shopping Cart{% else %}سبد خرید{% endif %}</span>
+                  </h2>
+                  <p class="description">{% if LANGUAGE_CODE == 'en' %}Cart is empty{% else %}سبد خرید خالی{% endif %}</p>
+                  <hr class="gray-50">
+                  <!-- Tag Cloud -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

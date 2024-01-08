@@ -1,0 +1,23 @@
+from django.contrib import admin
+from .models import *
+# Register your models here.
+admin.site.register(Question1)
+admin.site.register(Question2)
+admin.site.register(Question4)
+admin.site.register(Question5)
+admin.site.register(Question6)
+admin.site.register(Question7)
+admin.site.register(Question10)
+admin.site.register(Question11)
+admin.site.register(Question12)
+admin.site.register(Question13)
+admin.site.register(Question14)
+admin.site.register(Question15)
+admin.site.register(Question16)
+admin.site.register(Question17)
+admin.site.register(Question18)
+admin.site.register(Question20)
+admin.site.register(Question25)
+admin.site.register(Question26)
+admin.site.register(Question27)
+admin.site.register(PriceMeterForm)

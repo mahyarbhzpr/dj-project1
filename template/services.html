@@ -1,0 +1,95 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% translate 'rokhaam' %} | {% translate 'Services' %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+        <!-- Main -->
+    <main id="main" class="shock-main has-overlay bg-image bg-fixed" data-bg-image="{{background.img.url}}">
+
+      <!-- Banner -->
+      <section class="shock-section has-holder pt-4" style="background:#000000ab;">
+        <div class="container max-w-75">
+          <!-- Intro -->
+          <div class="basic-intro text-center">
+            <h1 class="title">
+              <span class="text-1 d-block text-style-2 text-outline text-gradient scheme-1">{{ content.content1 }}</span>
+              <span class="text-2 d-block text-style-2 text-italic text-gradient scheme-1">{{ content.content2 }}</span>
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card -->
+      <section class="shock-section pt-5 pb-4" style="background:#000000ab;">
+        <div class="container">
+          <div class="row g-4">
+            {% for services in services %}
+            <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{services.id}}00">
+              <div class="card double-edge has-icon parent">
+                <div class="card-body">
+                  <img class="card-image-icon primary" src="{{services.icon.url}}" alt="{{services.name}}" data-shock-icon="32" />
+                  <h3 class="title text-style-11 white">{{services.name}}</h3>
+                  <p class="description">{{services.description}}.</p>
+                  <!-- Button -->
+                  <div class="button-wrapper align-h-right">
+                    <span class="arrow-button cross scheme-2 primary">
+                      <span class="arrow">
+                        <span class="item"></span>
+                        <span class="item"></span>
+                      </span>
+                      <span class="line"></span>
+                      <span class="text">{% translate 'See More' %}</span>
+                    </span>
+                  </div>
+                </div>
+                <!-- Link -->
+                <a href="/{{services.link}}" class="full-link">
+                  <div class="overlay gray-25 magnetic-effect"></div>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <!-- Divider -->
+      <section class="shock-section pb-4" style="background:#000000ab;">
+        <div class="container">
+          <span class="zzz scheme-2 gray-75"></span>
+        </div>
+      </section>
+
+    </main>
+    <!-- خطوط عمودی -->
+    <div class="vertical-lines diagonal scheme-2 tertiary">
+      <div class="row">
+        <div class="col-12 col-md-6 align-h-center">
+          <span class="line"></span>
+        </div>
+        <div class="col-12 col-md-6 align-h-center">
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

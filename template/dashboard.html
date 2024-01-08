@@ -1,0 +1,159 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}rokhaam | Dashboard{% else %}رخام | داشبورد{% endif %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main bg-color black">
+
+      <!-- Vertical Tab: Dark background -->
+      <section class="shock-section pt-6 pb-6 bg-color bg-color black">
+        <div class="container">
+          <!-- Intro -->
+          <div class="basic-intro mb-35 text-center">
+            <h2 class="title gray-50 text-style-5">{% if LANGUAGE_CODE == 'en' %}Dashboard{% else %}داشبورد{% endif %}</h2>
+            <hr class="gray-25">
+          </div>
+          <div class="vertical-tab scheme-2 tertiary">
+            <!-- Tab navigation -->
+            <ul id="example-v-dark-tab" class="nav nav-pills" role="tablist" aria-orientation="vertical">
+              <li class="nav-item" role="presentation">
+                <button id="example-v-dark-1-tab" class="nav-link active" aria-selected="true" aria-controls="example-v-dark-1" data-bs-target="#example-v-dark-1" data-bs-toggle="tab" role="tab">
+                {% if LANGUAGE_CODE == 'en' %}Purchased products{% else %}محصولات خریداری شده{% endif %}
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button id="example-v-dark-2-tab" class="nav-link" aria-selected="false" aria-controls="example-v-dark-2" data-bs-target="#example-v-dark-2" data-bs-toggle="tab" role="tab">
+                {% if LANGUAGE_CODE == 'en' %}User Settings{% else %}تنظیمات کاربری{% endif %}
+                </button>
+              </li>
+            <li class="nav-item" role="presentation">
+                <button id="example-v-dark-3-tab" class="nav-link" aria-selected="false" aria-controls="example-v-dark-3" data-bs-target="#example-v-dark-3" data-bs-toggle="tab" role="tab">
+                {% if LANGUAGE_CODE == 'en' %}Estimated price{% else %}براورد قیمت{% endif %}
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-target="/accounts/logout/">
+                 <a href="/accounts/logout/" class="nav-link">
+                 {% if LANGUAGE_CODE == 'en' %}Logout{% else %}خروج{% endif %}
+                 </a> 
+                </button>
+              </li>
+            </ul>
+            <!-- Tab content -->
+            <div class="tab-content overflow-hidden">
+              <div id="example-v-dark-1" class="tab-pane fade show active" role="tabpanel">
+                <div class="max-w-85 mx-auto">
+           <!-- Table -->
+          <table class="table scheme-2">
+            <thead>
+              <tr>
+                <th scope="col" class="white">#</th>
+                <th scope="col" class="white">{% if LANGUAGE_CODE == 'en' %}Image{% else %}عکس{% endif %}</th>
+                <th scope="col" class="white">{% if LANGUAGE_CODE == 'en' %}Name{% else %}نام{% endif %} </th>
+                <th scope="col" class="white">{% if LANGUAGE_CODE == 'en' %}Price{% else %}قیمت{% endif %}</th>
+                <th scope="col" class="white">{% if LANGUAGE_CODE == 'en' %}Download{% else %}دانلود{% endif %}</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for pu in productuser %}
+              <tr>
+                <th scope="row" class="white">{{pu.id}}</th>
+                <td><img src="{{pu.product.image.url}}" width="70px" height="70px" style="border-radius:50%;"/></td>
+                <td>{{ pu.product.name }}</td>
+                <td>{{ pu.product.price }}</td>
+                <td><a href="{% url 'shop:downlaod' pu.product.slug %}"><i class="fa fa-download" aria-hidden="true"></i> {% if LANGUAGE_CODE == 'en' %}Download{% else %}دانلود{% endif %}</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+                </div>
+              </div>
+              <div id="example-v-dark-2" class="tab-pane fade" role="tabpanel">
+                <div class="max-w-85 mx-auto">
+                           <div class="form-area mb-35 scheme-1 primary">
+            <form class="form-fields" method="POST">
+                {% csrf_token %}
+              <div class="form-row row">
+                <div class="form-col col-12 col-md-6">
+                  <input class="form-control rounded-3" name="mobile" value="{{user.mobile}}" style="background:gray;" readonly>
+                </div>
+                <div class="form-col col-12 col-md-6">
+                  <input type="text" name="full_name" class="form-control rounded-3" placeholder="{% if LANGUAGE_CODE == 'en' %}Full Name{% else %}نام کامل{% endif %}" style="background:gray;" value="{{user.full_name}}">
+                </div>
+              </div>
+              <div class="form-row row">
+                <div class="form-col col-12">
+                    
+                <input class="form-control rounded-3 form-file" type="file" name="image" title="avatar" id="avatar" style="background:gray;">
+                <label class="form-label form-check-label" for="avatar">
+                    {% if user.image %}
+                        <a href="{{user.image.url}}" class="link black primary-hover"> <img src="{{user.image.url}}" width="50px" height="50px"></a>
+                    {% endif %}
+                    </label>
+              </div>
+              </div>
+              <div class="form-row row">
+                <div class="form-col col-12">
+                  <!-- Button -->
+                  <button class="button shadow rounded-3 black primary-hover" type="submit">
+                    <span class="button-text white white-hover">{% if LANGUAGE_CODE == 'en' %}Save{% else %}ذخیره{% endif %}</span>
+                    <i class="fa-solid fa-arrow-left button-icon white white-hover"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+                </div>
+              </div>
+              <div id="example-v-dark-3" class="tab-pane fade" role="tabpanel">
+                <div class="max-w-85 mx-auto">
+           <!-- Table -->
+          <table class="table scheme-2">
+            <thead>
+              <tr>
+                <th scope="col" class="white">#</th>
+                <th scope="col" class="white">{% if LANGUAGE_CODE == 'en' %}percentage error{% else %}درصد خطا{% endif %} </th>
+                <th scope="col" class="white">{% if LANGUAGE_CODE == 'en' %}Price{% else %}قیمت{% endif %}</th>
+                <th scope="col" class="white">{% if LANGUAGE_CODE == 'en' %}Date{% else %}تاریخ{% endif %}</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for pricemeter in pricemeter %}
+              <tr>
+                <td>{{ pricemeter.id }}</td>
+                <td>{{ pricemeter.rates }}%</td>
+                <td>{{pricemeter.price}}تومان</td>
+                <td>{{pricemeter.date_created}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

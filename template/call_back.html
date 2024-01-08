@@ -1,0 +1,53 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% translate 'rokhaam' %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main" data-bg-color="#141415">
+    <section class="h-100">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-102">
+        <div class="card mb-4">
+          <div class="card-body p-4 d-flex flex-row">
+              <center>
+            <h1>{% translate 'Payment has successful' %}</h1>
+            </center>
+          </div>
+        </div>
+        
+                   <a href="/dashboard/">
+            <center>
+            <button class="button shadow tertiary-25 tertiary-hover magnetic-effect" style="background:yellow; font-size:25px;" >
+            <span class="button-text tertiary white-hover" style="color:black; background:yellow; font-size:25px;">{% translate 'Go to Dashbooard' %}</span>
+            <span class="button-duocolor tertiary black-hover" style="background:yellow; font-size:25px;">
+            <i class="fa-solid fa-arrow-down button-icon white-hover" style="background:yellow; font-size:25px;"></i>
+            </span>
+            </button>
+          </center>
+          </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+      <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+</html>

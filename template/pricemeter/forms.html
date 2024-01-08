@@ -1,0 +1,560 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>براورد قیمت | رخام</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="{% static 'pricemeter/fonts/material-design-iconic-font/css/material-design-iconic-font.css' %}">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{% static 'pricemeter/css/style.css' %}">
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<div class="image-holder">
+				<img src="{% static 'pricemeter/images/form-wizard.png' %}" alt="">
+			</div>
+            <form method="post">
+				    {% csrf_token %}
+            	<div id="wizard">
+	                <!-- SECTION 1 -->
+	                <h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<input type="hidden" id="step1" value="0">
+							<input type="hidden" id="rate1" value="0">
+							{{question1.content1}}
+							{% for questionv1 in questionv1 %}
+							<label>
+								<input type="radio" name="question1" value="{{questionv1.id}}" id="steps1{{questionv1.id}}">{{questionv1.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv1.message}}</div>
+							</label>
+
+							<script>
+							$("#steps1{{questionv1.id}}").click(function(){$("#step1").val(
+							{{questionv1.price}})
+							$("#rate1").val({{questionv1.rate}})
+							prs();
+							});
+							</script>
+							{% endfor %}	
+						</div>
+                        <hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step2" value="0">
+							<input type="hidden" id="rate2" value="0">
+							{{question1.content2}}
+						        {% for questionv2 in questionv2 %}
+							<label>
+								<input type="radio" name="question2" value="{{questionv2.id}}" id="steps2{{questionv2.id}}">{{questionv2.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv2.message}}</div>
+							</label>
+<script>
+							$("#steps2{{questionv2.id}}").click(function(){$("#step2").val(
+							{{questionv2.price}});
+							$("#rate2").val({{questionv2.rate}})
+							prs();
+							});
+							</script>
+							{% endfor %}
+                        </div>
+						<hr />
+							<div class="form-row">
+                                <label for="">
+                                    {{question1.content3}}
+                                </label>
+                                <input type="text" class="form-control" name="question3" value="1" id="stepsm3">	
+                                <script>
+							$("#stepsm3").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>
+                        <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 2 -->
+					<h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<input type="hidden" id="step4">
+							<input type="hidden" id="rate4">
+							{{question1.content4}}
+							{% for questionv4 in questionv4 %}
+							<label>
+								<input type="radio" name="question4" value="{{questionv4.id}}" id="steps4{{questionv4.id}}">{{questionv4.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv4.message}}</div>
+							</label>
+							<script>
+							$("#steps4{{questionv4.id}}").click(function(){$("#step4").val({{questionv4.price}});
+							$("#rate4").val({{questionv4.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+						</div>
+                        <hr />
+                        <div class="form-row">
+                            <label for="">
+                            {{question2.content1}}
+                            </label>
+                                <div class="form-holder">
+                                    <i class="zmdi zmdi-caret-down" style="right:95%;"></i>
+                                    <input type="hidden" id="step5">
+							        <input type="hidden" id="rate5">
+                                    <select name="question5" class="form-control">
+                                        {% for questionv5 in questionv5 %}
+                                        <option value="{{questionv5.id}}" id="steps5{{questionv5.id}}" class="option" style="color:black;">{{questionv5.name}} </option>
+                                        <script>
+							            $("#steps5{{questionv5.id}}").click(function(){$("#step5").val({{questionv5.price}});
+							            $("#rate5").val({{questionv5.rate}})
+							            prs();});
+							            </script>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+						<hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step6">
+							<input type="hidden" id="rate6">
+							{{question2.content2}}
+						        {% for questionv6 in questionv6 %}
+							<label>
+								<input type="radio" name="question6" value="{{questionv6.id}}" id="steps6{{questionv6.id}}">{{questionv6.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv6.message}}</div>
+							</label>
+							<script>
+							$("#steps6{{questionv6.id}}").click(function(){$("#step6").val({{questionv6.price}});
+							$("#rate6").val({{questionv6.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+                        <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 3 -->
+					<h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<input type="hidden" id="step7">
+							<input type="hidden" id="rate7">
+							{{question2.content3}}
+							{% for questionv7 in questionv7 %}
+							<label>
+								<input type="radio" name="question7" value="{{questionv7.id}}" id="steps7{{questionv7.id}}">{{questionv7.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv7.message}}</div>
+							</label>
+							<script>
+							$("#steps7{{questionv7.id}}").click(function(){$("#step7").val({{questionv7.price}});
+							$("#rate7").val({{questionv7.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+						</div>
+                        <hr />
+                        <div class="form-row">
+                                <label for="">
+                                {{question2.content4}}
+                                </label>
+                                <input type="text" class="form-control" name="question8" value="1" id="stepsm8">	
+                                <script>
+							$("#stepsm8").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>
+						<hr />
+                        <div class="form-row">
+                                <label for="">
+                                {{question3.content1}}
+                                </label>
+                                <input type="text" class="form-control" name="question9" value="1" id="stepsm9">	
+                                <script>
+							$("#stepsm9").keyup(function(){
+							    prs();
+							});
+							</script>
+                        </div>
+                            <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 4 -->
+	                <h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<input type="hidden" id="step10">
+							<input type="hidden" id="rate10">
+							{{question3.content2}}
+							{% for questionv10 in questionv10 %}
+							<label>
+								<input type="radio" name="question10" value="{{questionv10.id}}" id="steps10{{questionv10.id}}">{{questionv10.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv10.message}}</div>
+							</label>
+							<script>
+							$("#steps10{{questionv10.id}}").click(function(){$("#step10").val({{questionv10.price}});
+							$("#rate10").val({{questionv10.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+						</div>
+                        <hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step11">
+							<input type="hidden" id="rate11">
+							{{question3.content3}}
+						        {% for questionv11 in questionv11 %}
+							<label>
+								<input type="radio" name="question11" value="{{questionv11.id}}" id="steps11{{questionv11.id}}">{{questionv11.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv11.message}}</div>
+							</label>
+							<script>
+							$("#steps11{{questionv11.id}}").click(function(){$("#step11").val({{questionv11.price}});
+							$("#rate11").val({{questionv11.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+						<hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step12">
+							<input type="hidden" id="rate12">
+							{{question3.content4}}
+						        {% for questionv12 in questionv12 %}
+							<label>
+								<input type="radio" name="question12" value="{{questionv12.id}}" id="steps12{{questionv12.id}}">{{questionv12.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip"> {{questionv12.message}} </div>
+							</label>
+							<script>
+							$("#steps12{{questionv12.id}}").click(function(){$("#step12").val({{questionv12.price}});
+							$("#rate12").val({{questionv12.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+                        <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 5 -->
+					<h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<input type="number" id="step13">
+							<input type="hidden" id="rate13">
+							{{question4.content1}}
+							{% for questionv13 in questionv13 %}
+							<label>
+								<input type="radio" name="question13" value="{{questionv13.id}}" id="steps13{{questionv13.id}}">{{questionv13.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv13.message}}</div>
+							</label>
+							<script>
+							$("#steps13{{questionv13.id}}").click(function(){$("#step13").val({{questionv13.price}});
+							$("#rate13").val({{questionv13.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+						</div>
+                        <hr />
+                        <div class="checkbox-circle">
+							<input type="number" id="step14">
+							<input type="hidden" id="rate14">
+							{{question4.content2}}
+						        {% for questionv14 in questionv14 %}
+							<label>
+								<input type="radio" name="question14" value="{{questionv14.id}}" id="steps14{{questionv14.id}}">{{questionv14.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv14.message}}</div>
+							</label>
+							<script>
+							$("#steps14{{questionv14.id}}").click(function(){$("#step14").val({{questionv14.price}});
+							$("#rate14").val({{questionv14.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+						<hr />
+                        <div class="checkbox-circle">
+							<input type="number" id="step15">
+							<input type="hidden" id="rate15">
+							{{question4.content3}}
+						        {% for questionv15 in questionv15 %}
+							<label>
+								<input type="radio" name="question15" value="{{questionv15.id}}" id="steps15{{questionv15.id}}">{{questionv15.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv15.message}}</div>
+							</label>
+							<script>
+							$("#steps15{{questionv15.id}}").click(function(){$("#step15").val({{questionv15.price}});
+							$("#rate15").val({{questionv15.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+                        <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 6 -->
+					<h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<input type="hidden" id="step16">
+							<input type="hidden" id="rate16">
+							{{question4.content4}}
+							{% for questionv16 in questionv16 %}
+							<label>
+								<input type="radio" name="question16" value="{{questionv16.id}}" id="steps16{{questionv16.id}}">{{questionv16.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv16.message}}</div>
+							</label>
+							<script>
+							$("#steps16{{questionv16.id}}").click(function(){$("#step16").val({{questionv16.price}});
+							$("#rate16").val({{questionv16.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+						</div>
+                        <hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step17">
+							<input type="hidden" id="rate17">
+							{{question5.content1}}
+						        {% for questionv17 in questionv17 %}
+							<label>
+								<input type="radio" name="question17" value="{{questionv17.id}}" id="steps17{{questionv17.id}}">{{questionv17.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv17.message}}</div>
+							</label>
+							<script>
+							$("#steps17{{questionv17.id}}").click(function(){$("#step17").val({{questionv17.price}});
+							$("#rate17").val({{questionv17.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+						<hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step18">
+							<input type="hidden" id="rate18">
+							{{question5.content2}}
+						        {% for questionv18 in questionv18 %}
+							<label>
+								<input type="radio" name="question18" value="{{questionv18.id}}" id="steps18{{questionv18.id}}">{{questionv18.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv18.message}}</div>
+							</label>
+							<script>
+							$("#steps18{{questionv18.id}}").click(function(){$("#step18").val({{questionv18.price}});
+							$("#rate18").val({{questionv18.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+                        <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 7 -->
+	                <h4></h4>
+	                <section>
+                        <div class="form-row">
+                                <label for="">
+                                {{question5.content3}}
+                                </label>
+                                <input type="text" class="form-control" name="question19" value="1" id="stepsm19">	
+                                <script>
+							$("#stepsm19").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>                       
+                            <hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step20">
+							<input type="hidden" id="rate20">
+							{{question5.content4}}
+						        {% for questionv20 in questionv20 %}
+							<label>
+								<input type="radio" name="question20" value="{{questionv20.id}}" id="steps20{{questionv20.id}}">{{questionv20.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv20.message}}</div>
+							</label>
+							<script>
+							$("#steps20{{questionv20.id}}").click(function(){("#step20").val({{questionv20.price}});
+							$("#rate20").val({{questionv20.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+						<hr />
+                        <div class="form-row">
+                                <label for="">
+                                {{question6.content1}}
+                                </label>
+                                <input type="text" class="form-control" name="question21" value="1" id="stepsm21">	
+                                <script>
+							$("#steps21").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>                        <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 8 -->
+					<h4></h4>
+	                <section>
+                        <div class="form-row">
+                                <label for="">
+                                {{question6.content2}} k
+                                </label>
+                                <input type="text" class="form-control" name="question22" value="1" id="stepsm22">	
+                                <script>
+							$("#stepsm22").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>                      
+                            <hr />
+                        <div class="form-row">
+                                <label for="">
+                                {{question6.content3}} k
+                                </label>
+                                <input type="text" class="form-control" name="question23" value="1" id="stepsm23">	
+                                <script>
+							$("#stepsm23").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>					
+                            <hr />
+                        <div class="form-row">
+                                <label for="">
+                                {{question6.content4}}
+                                </label>
+                                <input type="text" class="form-control" name="question24" value="1" id="stepsm24">	
+                                <script>
+							$("#stepsm24").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>
+                            <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+	                </section>
+					<!-- SECTION 9 -->
+	                <h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<input type="hidden" id="step25">
+							<input type="hidden" id="rate25">
+							{{question7.content1}}
+							{% for questionv25 in questionv25 %}
+							<label>
+								<input type="radio" name="question25" value="{{questionv25.id}}" id="steps25{{questionv25.id}}">{{questionv25.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv25.message}}</div>
+							</label>
+							<script>
+							$("#steps25{{questionv25.id}}").click(function(){$("#step25").val({{questionv25.price}});
+							$("#rate25").val({{questionv25.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+						</div>
+                        <hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step26">
+							<input type="hidden" id="rate26">
+							{{question7.content2}}
+						        {% for questionv26 in questionv26 %}
+							<label>
+								<input type="radio" name="question26" value="{{questionv26.id}}" id="steps26{{questionv26.id}}">{{questionv26.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv26.message}}</div>
+							</label>
+							<script>
+							$("#steps26{{questionv26.id}}").click(function(){$("#step26").val({{questionv26.price}});
+							$("#rate26").val({{questionv26.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+						<hr />
+                        <div class="checkbox-circle">
+							<input type="hidden" id="step27">
+							<input type="hidden" id="rate27">
+							{{question7.content3}}
+						        {% for questionv27 in questionv27 %}
+							<label>
+								<input type="radio" name="question27" value="{{questionv27.id}}" id="steps27{{questionv27.id}}">{{questionv27.name}}
+								<span class="checkmark"></span>
+								<div class="tooltip">{{questionv27.message}}</div>
+							</label>
+							<script>
+							$("#steps27{{questionv27.id}}").click(function(){$("#step27").val({{questionv27.price}});
+							$("#rate27").val({{questionv27.rate}})
+							prs();});
+							</script>
+							{% endfor %}
+                        </div>
+                        <div class="form-row">
+                                <label for="">
+                                {{question7.content4}}
+                                </label>
+                                <input type="text" class="form-control" name="question28" value="1" id="steps28">	
+                                <script>
+							$("#steps28").keyup(function(){
+							    prs();
+							});
+							</script>
+                            </div>
+                        <p style="font-size: 18px; font-weight: bold; color: black;">
+                            <span class="priceshow">0</span> <span>تومان</span><br />
+                          <span> درصد خطا : </span>  <span class="quantityrateser"> 100 </span>
+                        </p>
+                        <button type="submit" class="subpricemeter">ثبت</button>
+	                </section>
+            	</div>
+            	<input name="user" type="hidden" value="{{user.id}}" readonly>
+            	<input name="price" type="hidden" class="quantity" value="0" readonly>
+            	<input name="rates" type="hidden" class="quantityrates" value="0" readonly>
+            </form>
+
+		</div>
+
+		<script src="{% static 'pricemeter/js/jquery-3.3.1.min.js' %}"></script>
+
+		<!-- JQUERY STEP -->
+		<script src="{% static 'pricemeter/js/jquery.steps.js' %}"></script>
+
+		<script src="{% static 'pricemeter/js/main.js' %}"></script>
+<!-- Template created and distributed by Colorlib -->
+</body>
+</html>

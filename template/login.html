@@ -1,0 +1,78 @@
+{% load static %}
+{% load i18n %}
+
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}rokhaam{% else %}رخام{% endif %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' with logo=logo %}
+    <!-- Main -->
+<main id="main" class="shock-main">
+      <!-- Form -->
+      <section class="shock-section has-holder pt-4 pb-4"><div class="navbar-holder" style="padding-top: 150.8px"></div>
+        <div class="container max-w-85">
+          <div class="row g-5">
+            <div class="col-12 col-md-6 align-v-center">
+              <!-- Image -->
+              <div class="image-wrapper magnetic-effect">
+                <img src="{% static 'Welcome400.png' %}" class="image bg-color primary-25">
+              </div>
+            </div>
+            <div class="col-12 col-md-6 align-v-center">
+              <div class="holder">
+                <!-- Intro -->
+                <div class="basic-intro mb-2">
+                  <h2 class="title text-style-5 black">
+                    <span class="text-1 text-outline">{% if LANGUAGE_CODE == 'en' %}Login / Signup{% else %}ورود/ثبت نام{% endif %}</span>
+                    <span class="text-2 text-italic"><mark class="animated-underline primary-25 active"> {% if LANGUAGE_CODE == 'en' %}Name{% else %}نام{% endif %} </mark></span>
+                  </h2>
+                </div>
+                <!-- Form -->
+                <div class="form-area scheme-1 primary">
+                  <form method="POST" class="form-fields">
+                      {% csrf_token %}
+                    <div class="form-row row">
+                      <div class="form-col form-floating col-12 col-md-12">
+                        <input type="number" name="mobile" id="InputFloatingEmail" class="form-control" placeholder="{% if LANGUAGE_CODE == 'en' %}Phone{% else %}شماره تلفن همراه{% endif %}" required="required" style="color:white;">
+                        <label for="InputFloatingEmail" class="form-label">{% if LANGUAGE_CODE == 'en' %}Phone{% else %}تلفن همراه{% endif %}</label>
+
+                    </div>
+
+                    <div class="form-row row">
+                      <div class="form-col col-12 col-md-12 align-h-right">
+                        <!-- Button -->
+                        <button type="submit" class="button arrow-button next scheme-1 primary">
+                          <span class="arrow" style="background:white;">
+                            <span class="item" style="background:white;"></span>
+                            <span class="item" style="background:white;"></span>
+                          </span>
+                          <span class="line" style="background:white;"></span>
+                          <span class="text">{% if LANGUAGE_CODE == 'en' %}login/ signup{% else %}ورود / عضویت{% endif %}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>  <!-- ======= Footer ======= -->
+  {% include 'footer.html' with logo=logo %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

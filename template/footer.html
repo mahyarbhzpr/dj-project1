@@ -1,0 +1,147 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!---start GOFTINO code--->
+<script type="text/javascript">
+  !function(){var i="y8CCac",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+</script>
+<!---end GOFTINO code--->  
+ <!-- جعبه بازشونده -->
+    <!-- Side Widget -->
+    <div class="side-widget to-left invert-color mix-blend-difference d-only-desktop">
+      <div class="item">
+        <span class="widget label-icons">
+          <a href="#your-link" class="link black black-hover"><i class="icon fab fa-instagram"></i></a>
+          <a href="https://msng.link/o/?mostafakermani_rkm=tg" class="link black black-hover"><i class="icon fab fa-telegram"></i></a>
+          <a href="https://wa.link/82oob5" class="link black black-hover"><i class="icon fab fa-whatsapp"></i></a>
+          <a href="tel:+989122842892" class="link black black-hover"><i class="fa fa-phone" aria-hidden="true"></i>
+</a>
+          <span class="label-line black"></span>
+        </span>
+      </div>
+    </div>
+      <!-- Scroll to Top -->
+    <div class="side-widget to-right invert-color mix-blend-difference">
+      <div class="item align-v-bottom">
+        <a href="#" class="link hover-up">
+          <span class="widget float-icon">
+            <i class="fa-solid fa-arrow-up-long icon"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <footer id="footer" class="shock-footer scheme-1 tertiary" data-bg-color="#1a1a1b">
+      <div class="footer-content focus-trigger">
+        <div class="container">
+          <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="footer-item">
+                <!-- Brand -->
+                <a href="/" class="footer-brand">
+                  <!-- <div class="site-title">Site Title</div> -->
+                  <img src="{{logo.img.url}}" alt="{% if LANGUAGE_CODE == 'en' %}Rokhaam {% else %}رخام{% endif %}" class="logo" />
+                  <span class="logo-after-text">{% if LANGUAGE_CODE == 'en' %}Rokhaam {% else %}رخام{% endif %}</span>
+                </a>
+                <!-- Text -->
+                <div class="footer-text">
+                  <p>.</p>
+                <button id="installApp" class="button simple" style="border:solid white 1px; border-radius:10px; padding:8px;">
+                    <center><span class="button-text white black-hover" >{% if LANGUAGE_CODE == 'en' %}Install Application {% else %}نصب اپلیکیشن{% endif %}</span></center>
+              <i class="fa-solid fa-arrow-left button-icon black black-hover"></i>
+            </button>
+                </div>
+              </div>
+              <div class="footer-item">
+                <!-- Icon list -->
+                <div class="list-wrapper">
+                  <ul class="icon-h-list">
+                    <li class="item ms-0">
+                      <a href="#" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-instagram"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="https://msng.link/o/?mostafakermani_rkm=tg" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-telegram"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="https://wa.link/82oob5" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-whatsapp"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="tel:+989122842892" class="link gray tertiary-hover hover-rotate"><i class="fa fa-phone" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="footer-item">
+                <!-- Button -->
+                <div class="hover-up-down">
+                  <a href="tel:+989122842892" class="button outline rounded gray tertiary-hover">
+                    <i class="fa-solid fa-phone button-icon left-icon gray white-hover"></i>
+                    <span class="button-text gray white-hover"> 09122842892</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="footer-item">
+                <h6 class="title">{% if LANGUAGE_CODE == 'en' %}Links{% else %}دسترسی سریع{% endif %}</h6>
+                <!-- Links list -->
+                <ul class="nav-list list-unstyled">
+                  <li class="nav-item">
+                    <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}" class="nav-link">
+                      <span class="text">{% if LANGUAGE_CODE == 'en' %}Home {% else %}خانه{% endif %}</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}services" class="nav-link">
+                      <span class="text">{% if LANGUAGE_CODE == 'en' %}Services {% else %}سرویس ها{% endif %}</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}store" class="nav-link">
+                      <span class="text">{% if LANGUAGE_CODE == 'en' %} Products {% else %}محصولات{% endif %}</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}contacts" class="nav-link">
+                      <span class="text">{% if LANGUAGE_CODE == 'en' %}Contact-us{% else %}ارتباط با ما{% endif %}</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{% if LANGUAGE_CODE == 'fa' %}/fa/{% else %}/{% endif %}blog" class="nav-link">
+                      <span class="text">{% if LANGUAGE_CODE == 'en' %}Blogs {% else %}بلاگ ها{% endif %}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="footer-item">
+                <h6 class="title">{% if LANGUAGE_CODE == 'en' %}ُSunscribe {% else %}مشترک شوید{% endif %}</h6>
+                <!-- Text -->
+                <div class="footer-text">
+                  <p>
+                  {% if LANGUAGE_CODE == 'en' %}subscribe to newsletter{% else %}در خبرنامه عضو شوید{% endif %}
+                  </p>
+                </div>
+                <!-- Form -->
+                <div class="form-area scheme-2">
+                  <form class="form-fields needs-validation" novalidate="novalidate">
+                    <div class="form-row row has-icon">
+                      <div class="form-col form-floating">
+                        <button class="button overlay-button"><img class="overlay-image-icon" src="{% static 'assets/svg/send-outline.svg' %}" alt="Icon name" data-shock-icon="32" /></button>
+                        <input id="InputFloatingFooter" class="form-control focus-trigger-field" name="InputFloatingFooter" placeholder="{% if LANGUAGE_CODE == 'en' %}E-mail {% else %}ایمیل{% endif %}..." required="required">
+                        <label for="InputFloatingFooter" class="form-label">{% if LANGUAGE_CODE == 'en' %}E-mail{% else %}ایمیل{% endif %}...</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-bar" data-bg-color="#1a1a1b">
+        <div class="text">© <span class="footer-date"></span> - {% if LANGUAGE_CODE == 'en' %}All rights reserved {% else %}تمامی حقوق محفوظ است{% endif %}.  <a href="tel:+989197555359" class="link gray primary-hover"><u>{% if LANGUAGE_CODE == 'en' %}Mahyar{% else %}مهیار{% endif %}</u></a>{% if LANGUAGE_CODE == 'en' %}Maked by {% else %}ساخته شده توسط{% endif %} <a href="#" class="link gray primary-hover"><u></u></a>.</div>
+      </div>
+    </footer>
+

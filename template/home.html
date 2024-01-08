@@ -1,0 +1,288 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'en' %}rokhaam{% else %} رخام {% endif %}</title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+     <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' with logo=logo %}
+    <!-- Main -->
+    <main id="main" class="shock-main" data-bg-color="#141415">
+
+      <!-- Banner -->
+      <section class="shock-section bg-image bg-fixed" data-bg-image="{{background.img.url}}">
+        <div class="container">
+          <div class="holder vh-100 align-v-center">
+            <!-- Intro -->
+            <div class="extended-intro">
+              <div class="wrapper">
+                <div class="left-column">
+                  <h2 class="title text-style-1 text-offset">
+                    <span class="text-1 filled tertiary-50">{{ content1.content1 }}</span>
+                  </h2>
+                  <span class="text-2 text-style-2 fw-400 text-outline text-italic gray">{{ content1.content2 }}</span>
+                  <div class="description text-style-12 gray">
+                    <p>{{ content1.content3 }}</p>
+                  </div>
+                </div>
+                <div class="right-column">
+                  <!-- Button -->
+                  <a href="#services" class="button double-edge transparent tertiary-hover floating-item">
+                    <span class="button-text white white-hover">{% if LANGUAGE_CODE == 'en' %}Lets start{% else %} شروع کنید {% endif %}</span>
+                    <span class="overlay gray-50 magnetic-effect"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banner -->
+      <section class="shock-section bg-image bg-fixed" data-bg-image="{% static 'assets/images/jpg/a-33.jpg' %}">
+        <div class="holder vh-100"></div>
+      </section>
+
+      <!-- Carousel -->
+      <section class="shock-section pt-6 pb-4">
+        <div class="container max-w-85">
+          <div class="row g-4">
+            <div class="col-12 col-md-6 align-v-center">
+              <!-- Intro -->
+              <div class="side-intro">
+                <h1 class="title text-style-1 text-offset">
+                  <span class="text-1 filled tertiary-50">{{ content2.content1 }}</span>
+                  <span class="text-1 outline white" data-lax="inertia-top">{{ content2.content1 }}</span>
+                </h1>
+                <span class="text-2 text-style-4 fw-400 text-outline text-italic gray">{{ content2.content2 }}</span>
+                <div class="description text-style-12 gray">
+                  <p>{{ content2.content3 }}</p>
+                </div>
+                <!-- Button -->
+                <a href="#" class="button double-edge transparent tertiary-hover">
+                  <span class="button-text white white-hover">{% if LANGUAGE_CODE == 'en' %}Lets start{% else %} شروع کنید {% endif %} </span>
+                  <span class="overlay gray-25 magnetic-effect"></span>
+                </a>
+              </div>
+            </div>
+        <div class="col-12 col-md-6">
+              <!-- Carousel -->
+              <div class="gallery swiper slider has-navigation has-scrollbar scheme-2 tertiary" data-columns="1,1,1,1" data-autoplay="10000" data-loop="true">
+                <div class="swiper-wrapper">
+                    {% for slider in slide %}
+                  <div class="swiper-slide">
+                    <!-- Video -->
+                      <div class="image-wrapper">
+                        <img src="{{ slider.image.url }}" class="image" />
+                      </div>
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="swiper-button-prev "></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card -->
+      <section class="shock-section pt-4 pb-4" id="services">
+        <div class="container max-w-85">
+          <div class="row g-4">
+            {% for services in services %}
+            <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="{{services.id}}00">
+              <div class="card double-edge has-icon parent">
+                <div class="card-body">
+                    {% if services.icon %}
+                  <img class="card-image-icon tertiary" src="{{services.icon.url}}" alt="{{services.name}}" data-shock-icon="32" />
+                  {% endif %}
+                  <h3 class="title text-style-11 white">{{services.name}} </h3>
+                  <p class="description text-style-12">{{ services.description }}.</p>
+                  <!-- Button -->
+                  <div class="button-wrapper align-h-right">
+                    <span class="arrow-button cross scheme-2 tertiary">
+                      <span class="arrow">
+                        <span class="item"></span>
+                        <span class="item"></span>
+                      </span>
+                      <span class="line"></span>
+                      <span class="text">{% if LANGUAGE_CODE == 'en' %}See{% else %} مشاهده {% endif %} </span>
+                    </span>
+                  </div>
+                  <!-- Link -->
+                  <a href="/{{ services.link }}" class="full-link">
+                    <div class="overlay magnetic-effect gray-25"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+            <!-- Card carousel -->
+      <section class="shock-section pt-5 pb-6 bg-color gray-10 overflow-hidden w-100">
+        <div class="container">
+          <!-- Carousel-->
+          <div class="swiper slider stretched has-gap has-drag-text has-overflow scheme-1 primary" data-columns="4,3,2,1">
+            <div class="swiper-wrapper">
+              {% for cm in cm %}
+              <div class="swiper-slide">
+                <div class="card has-image small-shadow parent">
+                  <div class="card-body rounded-bottom bg-color white" style="border-radius:10px;">
+                    <h3 class="title text-style-11 black">{{ cm.name }}</h3>
+                    <span class="text-style-12 black"> {{ cm.description }}</span>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="drag-text">
+              <i class="fa-solid fa-arrow-right icon"></i>
+              <div class="text">{% if LANGUAGE_CODE == 'en' %}Drag and Drop{% else %} بگیرید و بکشید {% endif %} </div>
+              <i class="fa-solid fa-arrow-left icon"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <section class="shock-section pt-4 pb-4">
+        <div class="container max-w-85">
+          <span class="zzz scheme-2 tertiary-50"></span>
+        </div>
+      </section>
+
+      <!-- Image -->
+      <section class="shock-section pt-4 pb-4">
+        <div class="container max-w-85">
+          <div class="row g-4">
+            <div class="col-12 col-md-6">
+              <!-- Circular text -->
+              <div class="circular-text">
+                <div class="emblem to-top-right mix-blend-lighter gray-75">طراحی•رخام•</div>
+              </div>
+              <!-- Image -->
+              <div class="image-wrapper">
+                <img src="{{section.img.url}}" class="image" alt="رخام" />
+              </div>
+            </div>
+            <div class="col-12 col-md-6 align-v-center">
+              <!-- Intro -->
+              <div class="side-intro">
+                <h2 class="title text-style-1 text-offset">
+                  <span class="text-1 filled tertiary-50">{{ content3.content1 }}</span>
+                  <span class="text-1 outline white" data-lax="inertia-top">{{ content3.content1 }}</span>
+                </h2>
+                <span class="text-2 text-style-4 fw-400 text-outline text-italic gray">{{ content3.content2 }}</span>
+                <div class="description text-style-12 gray">
+                  <p>{{ content3.content3 }}</p>
+                </div>
+                <!-- Button -->
+                <a href="/contacts" class="button double-edge transparent tertiary-hover" >
+                  <span class="button-text white white-hover">{% if LANGUAGE_CODE == 'en' %}Lets start{% else %} شروع کنید {% endif %}</span>
+                  <span class="overlay gray-25 magnetic-effect"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Form -->
+      <section class="shock-section has-overlay pt-5 pb-5 bg-image bg-fixed" data-bg-image="{{background.img.url}}">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-7 align-v-center">
+              <!-- Intro -->
+              <div class="side-intro mb-35">
+                <h2 class="title text-style-1 text-offset">
+                  <span class="text-1 filled tertiary-50">{{ content4.content1 }}</span>
+                  <span class="text-1 outline white" data-lax="inertia-top">{{ content4.content1 }}</span>
+                </h2>
+                <div class="description text-style-12 gray">
+                <p>{{ content4.content2 }}</p>
+                </div>
+              </div>
+            </div>
+                <div class="col-12 col-md-5">
+              <div class="card has-image shadow rounded parent">
+                <!-- Image -->
+                <div class="image-wrapper rounded-top">
+                  <img src="{{contact.img.url}}" alt="رخام" class="image vh-35 fit-cover bg-color primary-25">
+                </div>
+                <!-- Body -->
+                <div class="card-body rounded-bottom bg-color gray-10">
+                  <div class="title align-v-center text-style-11 white">
+                     <a href="tel:+989122842892" target="_blank">
+                    <i class="fa-solid fa-phone icon"></i>
+                    <span class="text ms-05">98-912-298-2892+</span>        
+                    </a>
+                    </div>
+                    <div class="title align-v-center text-style-11 white">
+                    <a href="tel:+982188527738" target="_blank">
+                    <i class="fa-solid fa-phone icon"></i>
+                    <span class="text ms-05">98-21-8852-7738+</span>        
+                    </a>
+                  </div>
+                    <!--<p class="description" style="height:65px;"> تهران خیابان مطهری خیابان کوه نور کوچه سوم پلاک ۱۹ واحد ۴</p>-->
+                    <p class="description" style="height:65px;"> {% if LANGUAGE_CODE == 'en' %}Iran, Tehran, motahari, koh noor street, third Street, Nu 19, Unit 4{% else %}  تهران خیابان مطهری خیابان کوه نور کوچه سوم پلاک ۱۹ واحد ۴ {% endif %} </p>
+
+                <div class="list-wrapper">
+                  <ul class="icon-h-list">
+                    <li class="item ms-0">
+                      <a href="#" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-instagram"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="https://msng.link/o/?mostafakermani_rkm=tg" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-telegram"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="https://wa.link/82oob5" class="link gray tertiary-hover hover-rotate"><i class="icon fab fa-whatsapp"></i></a>
+                    </li>
+                    <li class="item">
+                      <a href="tel:+989122842892" class="link gray tertiary-hover hover-rotate"><i class="fa fa-phone" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        <!-- Overlay -->
+        <div class="overlay black-25"></div>
+      </section>
+    </main>
+
+    <!-- خطوط عمودی -->
+    <div class="vertical-lines diagonal scheme-2 tertiary">
+      <div class="row">
+        <div class="col-12 col-md-6 align-h-center">
+          <span class="line"></span>
+        </div>
+        <div class="col-12 col-md-6 align-h-center">
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' with logo=logo %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

@@ -1,0 +1,183 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if LANGUAGE_CODE == 'fa' %}رخام | درباره ما{% else %}rokhaam | About-us{% endif %}</title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+<main id="main" class="shock-main bg-color gray-10">
+
+      <!-- Banner -->
+      <section class="shock-section has-overlay">
+        <div class="banner">
+          <div class="content-wrapper">
+            <!-- Intro -->
+            <div class="extended-intro max-w-65">
+              <h1 class="title white">
+                <span class="text-1 text-style-1">{{ content1.content1 }}</span>
+                <span class="text-2 text-style-4 text-italic">{{ content1.content2 }} <mark class="animated-underline primary active">{{ content1.content3 }}</mark>{{ content1.content4 }}</span>
+              </h1>
+            </div>
+          </div>
+          <!-- Image -->
+          <div class="image-wrapper">
+            <img src="{{ banner.img.url }}" class="image vh-50 fit-cover">
+          </div>
+          <!-- Overlay -->
+          <div class="overlay black-50"></div>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <section class="shock-section pt-5 pb-5">
+        <div class="container">
+          <div class="horizontal-tab mb-3 scheme-1 primary">
+            <!-- Tab navigation -->
+            <ul id="h-tab" class="nav nav-tabs" role="tablist" aria-orientation="horizontal">
+              <li class="nav-item" role="presentation">
+                <button id="h-1-tab" class="nav-link active" aria-selected="true" aria-controls="h-1" data-bs-target="#h-1" data-bs-toggle="tab" role="tab">
+                   {% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About-us{% endif %}
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button id="h-2-tab" class="nav-link" aria-selected="false" aria-controls="h-2" data-bs-target="#h-2" data-bs-toggle="tab" role="tab" tabindex="-1">
+                   {% if LANGUAGE_CODE == 'fa' %}هدف ما{% else %}Our goal{% endif %}
+                </button>
+              </li>
+            </ul>
+            <!-- Tab content -->
+            <div class="tab-content">
+              <div id="h-1" class="tab-pane fade show active" role="tabpanel" aria-labelledby="#h-1-tab">
+                <div class="max-w-65 mx-auto text-center">
+                  <p>{{ content2.content1 }}</p>
+                </div>
+              </div>
+              <div id="h-2" class="tab-pane fade" role="tabpanel" aria-labelledby="#h-2-tab">
+                <div class="max-w-65 mx-auto text-center">
+                  <h3><mark class="animated-underline accent text-white">{{ content3.content1 }}</mark>  .</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Image -->
+      <section class="shock-section pt-1 pb-5">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-12 col-md-7 align-v-center">
+              <div class="holder">
+                <!-- Intro -->
+                <div class="basic-intro">
+                  <h2 class="title black">
+                    <span class="text-1 text-style-5">{{ content4.content1 }}</span>
+                    <span class="text-2 text-style-6 text-italic"><mark class="animated-underline primary-50 active">{{ content4.content2 }}</mark>.</span>
+                  </h2>
+                  <div class="description gray">
+                <p>{{ content4.content3 }}</p>
+                  </div>
+                </div>
+                <hr class="gray-25">
+                <figure>
+                  <blockquote class="blockquote-body text-style-11 black">
+                    <p>{{ content4.content4 }}</p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">
+                    <cite title="Source Title"> {% if LANGUAGE_CODE == 'fa' %}رخام{% else %}rokhaam{% endif %}</cite>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="col-12 col-md-5">
+              <!-- Image -->
+              <div class="gallery" data-lax="inertia-top">
+                <a href="{{ about.video.url }}" class="item active gallery-item__vid__single">
+                  <i class="fa-solid fa-circle-play gallery-icon white"></i>
+                  <div class="image-wrapper shadow rounded">
+                    <img src="{{ about.img.url }}" class="image" alt="{% if LANGUAGE_CODE == 'fa' %}رخام{% else %}rokhaam{% endif %}">
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scrolling text -->
+      <section class="shock-section">
+        <div class="scrolling-text" style="height:50vh;">
+          <!-- Text -->
+          <div class="text-wrapper mix-blend-lighter">
+            <h2 class="text text-style-5 text-outline gray-75" data-lax="h-left" >{{ content5.content1 }}</h2>
+            <h2 class="text text-style-6 text-italic gray-75" data-lax="h-right">{{ content5.content1 }}</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card boxed -->
+      <section class="shock-section pt-5 pb-5">
+        <div class="container">
+          <div class="row g-4">
+            {% for teams in teams %}
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card boxed parent">
+                <!-- Image -->
+                <div class="image-wrapper rounded aos-init aos-animate" data-aos="zoom-in-up">
+                  <img src="{{teams.image.url}}" alt="Image name" class="image outline white">
+                  <div class="image-overlay primary-15 primary-50-hover"></div>
+                </div>
+                <!-- Box -->
+                <div class="card-body box shadow rounded bg-color1 white hover-up-down aos-init aos-animate" data-aos="zoom-in-up" data-aos-delay="100">
+                  <span class="label-vertical">
+                    <span class="label-line gray"></span>
+                    <span class="label-text gray">{{teams.job}}</span>
+                  </span>
+                  <h3 class="title text-style-11" > {{teams.name}}</h3>
+                  <div class="list-wrapper align-h-right">
+                    <ul class="icon-h-list">
+                        {% if teams.instagram %}
+                      <li class="item">
+                        <a href="https://instagram.com/{{teams.instagram}}" class="link gray primary-hover hover-rotate"><i class="icon fab fa-instagram"></i></a>
+                      </li>
+                      {% elif teams.phone %}
+                      <li class="item">
+                        <a href="tel:{{teams.phone}}" class="link gray primary-hover hover-rotate"><i class="icon fa fa-phone"></i></a>
+                      </li>
+                      {% elif teams.linkedin %}
+                      <li class="item me-0">
+                        <a href="https://linkedin.com/{{ teams.linkedin }}" class="link gray primary-hover hover-rotate"><i class="icon fab fa-linkedin-in"></i></a>
+                      </li>
+                      {% else %}
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+    </main>  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

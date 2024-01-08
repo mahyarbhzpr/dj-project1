@@ -1,0 +1,118 @@
+{% load static %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>رخام| پروژه ها </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main">
+
+      <!-- Portfolio scrolling -->
+      <section class="shock-section pt-5 pb-2">
+        <div class="container">
+          <!-- Intro -->
+          <!-- Portfolio -->
+          <div class="gallery stretched has-gap scrolling-grid">
+            <div class="bricklayer" data-columns="3">
+               {% for media in media %}
+               {% if media.image %}
+                <br />
+                <div class="image-wrapper rounded shadow">
+                  <img src="{{media.image.url}}" class="image vh-35 fit-cover" />
+                <input value="{{ media.image.url }}" type="text" id="urlsimage{{media.id}}">
+              <button onclick="myFunction1()">کپی آدرس</button>
+                </div>
+                <script>
+                    function myFunction1() {
+                             // Get the text field
+                        var copyText = document.getElementById("urlsimage{{media.id}}");
+
+                         // Select the text field
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                         // Copy the text inside the text field
+                        navigator.clipboard.writeText(copyText.value);
+
+                        // Alert the copied text
+                            alert("Copied the text: " + copyText.value);
+                    }
+                </script>
+                {% elif media.video %}
+    
+                <div class="image-wrapper rounded shadow">
+                  <video class="vh-35 fit-cover" controls>
+                      <source src="{{ media.video.url }}" type="video/mp4">
+                      </video>
+                      <input value="{{ media.video.url }}" type="text" id="urlsvideo{{media.id}}">
+                      <button onclick="myFunction2()">کپی آدرس</button>
+                      
+                </div>
+                                <script>
+                    function myFunction2() {
+                             // Get the text field
+                        var copyText = document.getElementById("urlsvideo{{media.id}}");
+
+                         // Select the text field
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                         // Copy the text inside the text field
+                        navigator.clipboard.writeText(copyText.value);
+
+                        // Alert the copied text
+                            alert("Copied the text: " + copyText.value);
+                    }
+                </script>
+                {% elif media.file %}
+                <div class="image-wrapper rounded shadow">
+                  <a href="{{media.file.url}}" class="vh-35" >{{media.file.url}}</a>
+                <input value="{{ media.file.url }}" type="text" class="item parent hover-zoom-rotate" id="urlsfile{{media.id}}">     
+                <button onclick="myFunction3()">کپی آدرس</button>
+                </div>
+                <script>
+                    function myFunction3() {
+                             // Get the text field
+                        var copyText = document.getElementById("urlsfile{{media.id}}");
+
+                         // Select the text field
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                         // Copy the text inside the text field
+                        navigator.clipboard.writeText(copyText.value);
+
+                        // Alert the copied text
+                            alert("Copied the text: " + copyText.value);
+                    }
+                </script>
+                {% endif %}
+
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+
+
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+

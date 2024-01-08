@@ -1,0 +1,127 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% translate 'rokhaam' %}|{% translate 'Projects' %} </title>
+    <meta name="description" content=" ">
+    <meta name="author" content="mahyar_bhzp">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="manifest" href="{% static 'assets/manifest.json' %}" />
+
+{% include "style.html" with css=css %}
+  </head>
+  <body class="shock-body">
+{% include 'header.html' %}
+    <!-- Main -->
+    <main id="main" class="shock-main">
+            <!-- Images -->
+      <section class="shock-section has-holder pb-8">
+        <div class="container max-w-85">
+          <!-- Intro -->
+          <div class="basic-intro text-center mb-5">
+            <h1 class="title black">
+              <span class="text-1 text-style-5">{{ content1.content1 }}</span>
+              <span class="text-2 text-style-6 text-italic"><mark class="animated-underline primary-25">{{ content1.content2 }}</mark>.</span>
+            </h1>
+          </div>
+          <!-- Gallery -->
+          <div class="gallery">
+            <div class="row g-2">
+              <div class="col-4" data-aos="fade-up" data-aos-delay="600">
+                <a href="{{ rightimg.img.url }}" class="item gallery-item__img">
+                  <div class="image-wrapper shadow rounded hover-zoom" data-lax="v-bottom">
+                    <img src="{{ rightimg.img.url }}" class="image fit-cover" />
+                    <div class="overlay primary-25"></div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-4" data-aos="fade-up" data-aos-delay="900">
+                <a href="{{ centerimg.img.url }}" class="item gallery-item__img">
+                  <div class="image-wrapper shadow rounded hover-zoom" data-lax="v-top">
+                    <img src="{{ centerimg.img.url }}" class="image fit-cover" />
+                    <div class="overlay primary-25"></div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-4" data-aos="fade-up" data-aos-delay="1200">
+                <a href="{{ leftimg.img.url }}" class="item gallery-item__img">
+                  <div class="image-wrapper shadow rounded hover-zoom" data-lax="v-bottom">
+                    <img src="{{ leftimg.img.url }}" class="image fit-cover" />
+                    <div class="overlay primary-25"></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banner -->
+      <section class="shock-section has-overlay bg-image bg-fixed" data-bg-image="{{ sectionimg.img.url }}">
+        <div class="banner vh-65 align-h-center align-v-center" style="background:#0000005c;">
+          <div class="holder">
+            <div class="gallery">
+              <a href="{{ sectionimg.video.url }}" class="item active gallery-item__vid__single">
+                <!-- Circular text -->
+                <div class="circular-text large mix-blend-lighter" data-lax="inertia-top">
+                  <div class="emblem gray">طراحی•معماری•</div>
+                </div>
+                <i class="fa-solid fa-circle-play gallery-icon white"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Overlay -->
+        <div class="overlay gray-25"></div>
+      </section>
+
+      <!-- Portfolio scrolling -->
+      <section class="shock-section pt-5 pb-2">
+        <div class="container">
+          <!-- Intro -->
+          <div class="extended-intro max-w-85">
+            <div class="wrapper">
+              <div class="left-column">
+                <h2 class="title white">
+                  <span class="text-1 text-style-2 text-outline">{{ content2.content1 }}</span>
+                  <span class="text-2 text-style-3 text-italic">{{ content2.content2 }}<mark class="animated-underline primary-25">{{ content2.content3 }}</mark>.</span>
+                </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Portfolio -->
+          <div class="gallery stretched has-gap scrolling-grid">
+            <div class="bricklayer" data-columns="3">
+               {% for project in portfolio %}
+              <a href="{% url 'core:project' project.slug %}" class="item parent hover-zoom-rotate">
+                <div class="text-wrapper text-center">
+                  <h3 class="title text-style-7 white"><mark class="animated-underline when-hover primary">{{project.name}}</mark></h3>
+                </div>
+                <div class="image-wrapper rounded shadow">
+                  <img src="{{project.image.url}}" class="image vh-35 fit-cover" />
+                  <div class="overlay black-50"></div>
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+
+
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+  <!-- End Footer -->
+{% include 'js.html' with js=js %}
+</body>
+
+</html>
+
+
