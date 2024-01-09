@@ -117,7 +117,7 @@ def checkout(request):
         return render(request, 'order_success.html', {'order': order,'logo': logo})
     return render(request, 'checkout.html', {'cart': cart,'logo': logo})
 
-merchant = '6b24393b-c9a0-4767-88e7-eb8c21472b1c'
+merchant = ""
 client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
 def to_bank(request, order_id):
     order = get_object_or_404(Order, id=order_id)
